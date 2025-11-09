@@ -10,7 +10,7 @@ const {title, posterUrl,plotSummary} = movie;
 
 
     return (
-       <div className="card bg-base-100 w-96 shadow-sm">
+       <div className="card w-[350px] shadow-sm bg-gray-400 pt-5">
 
   
           

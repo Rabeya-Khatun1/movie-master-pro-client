@@ -5,7 +5,7 @@ import 'swiper/css';
 import 'swiper/css/effect-coverflow';
 import 'swiper/css/pagination';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { EffectCoverflow, Pagination } from 'swiper/modules';
+import { Autoplay, EffectCoverflow, Pagination } from 'swiper/modules';
 
 const HeroSection = () => {
   const axios = useAxios();
@@ -33,16 +33,24 @@ const HeroSection = () => {
           depth: 100,
           modifier: 1,
           slideShadows: true,
+          loop:true
+        }}
+         modules={[EffectCoverflow, Pagination, Autoplay]}
+        autoplay={{
+          delay: 1500,
+          disableOnInteraction: false, 
         }}
         pagination={{ clickable: true }}
-        modules={[EffectCoverflow, Pagination]}
-        className="mySwiper"
+       
+        className="mySwiper  "
       >
-        {movies.map(movie => (
+        {
+        movies.map(movie => (
           <SwiperSlide key={movie._id} style={{ width: "300px" }}>
             <SingleMovie movie={movie} />
           </SwiperSlide>
-        ))}
+        ))
+        }
       </Swiper>
     </div>
   );

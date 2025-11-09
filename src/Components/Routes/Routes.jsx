@@ -4,6 +4,8 @@ import Home from "../Home/Home";
 import AllMovies from "../AllMovies/AllMovies";
 import MyCollection from "../MyCollection/MyCollection";
 import ErrorPage from "../ErrorPage/ErrorPage";
+import Login from "../Login/Login";
+import Register from "../Register/Register";
 
 
 export const router = createBrowserRouter([
@@ -25,7 +27,15 @@ export const router = createBrowserRouter([
         {
             path: '/myCollection',
             Component: MyCollection,
-        }
+        },
+        {
+            path: '/login',
+            Component: Login,
+        },
+        {
+            path: '/register',
+            Component: Register,
+        },
     ]
   },
 ]);
