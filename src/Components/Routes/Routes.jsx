@@ -7,6 +7,8 @@ import ErrorPage from "../ErrorPage/ErrorPage";
 import Login from "../Login/Login";
 import Register from "../Register/Register";
 import ViewDetails from "../ViewDetails/ViewDetails";
+import AddMovie from "../AddMovies/AddMovies";
+
 
 
 export const router = createBrowserRouter([
@@ -28,6 +30,10 @@ export const router = createBrowserRouter([
         {
             path: '/myCollection',
             Component: MyCollection,
+        },
+        {
+            path: '/movie/add',
+            Component: AddMovie,
         },
         {
             path: '/movies/:id',
