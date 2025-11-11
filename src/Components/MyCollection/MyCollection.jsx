@@ -1,9 +1,97 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import useAxios from '../../Hooks/useAxios';
+import useAuth from '../../Hooks/useAuth';
+import { motion } from "framer-motion";
+import { FaCalendarAlt, FaStar, FaTags } from 'react-icons/fa';
+import { Link } from 'react-router';
 
 const MyCollection = () => {
+
+    const {user} = useAuth()
+const axios = useAxios();
+const [myCollections, setMyCollections] = useState([])
+
+useEffect( ()=>{
+
+axios.get(`http://localhost:5000/movies/my-collection?email=${user?.email}`)
+.then(result => {
+    console.log(result.data)
+    setMyCollections(result.data)
+})
+.catch(error => {
+    console.log(error)
+})
+
+},[axios, user])
+
     return (
-        <div>
-            <h1>ami my collection</h1>
+        <div className='pt-24'>
+            <h1 className='font-bold text-4xl text-center my-5'>My Collections</h1>
+            <div>
+                {
+                    myCollections.map((mycollection,index) =>  <motion.div
+              key={mycollection._id}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.05, duration: 0.5 }}
+              whileHover={{ scale: 1.02 }}
+              className="relative group rounded-2xl overflow-hidden mx-10 mb-5 shadow-lg cursor-pointer"
+            >
+        
+              <img
+                src={mycollection.posterUrl}
+                alt={mycollection.title}
+                className="w-full h-[400px] object-cover transition-transform duration-500 group-hover:scale-110"
+              />
+
+      
+              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent opacity-90 transition-opacity duration-500 group-hover:opacity-100"></div>
+
+              <div className="absolute bottom-0 left-0 p-4 text-white w-full">
+                <h3 className="text-5xl font-bold mb-5">{mycollection.title}</h3>
+                <div className="flex items-center gap-3 text-sm text-gray-300">
+                  <span className="flex items-center gap-1  text-3xl">
+                    <FaStar className="text-yellow-400" /> {mycollection.rating }
+                  </span>
+                  <span className="flex items-center gap-1 text-3xl">
+                    <FaTags className="text-teal-400" /> {mycollection.genre }
+                  </span>
+                  <span className="flex items-center gap-1  text-3xl">
+                    <FaCalendarAlt className="text-gray-300" /> {mycollection.releaseYear}
+                  </span>
+               
+       
+                </div>
+           <span className="flex items-center gap-1  text-3xl">
+              {mycollection.director }
+                  </span>
+           <span className="flex items-center gap-1  text-3xl">
+              {mycollection.genre }
+                  </span>
+           <span className="flex items-center gap-1  text-3xl">
+              {mycollection.cast }
+                  </span>
+                <p className=" text-gray-300 mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 line-clamp-2 text-xl">
+                  {mycollection.plotSummary?.length > 120
+                    ? mycollection.plotSummary.slice(0, 120) + "..."
+                    : mycollection.plotSummary}
+                </p>
+
+       <div className='flex gap-3'>
+                 <Link to={``}><button className="mt-3 w-[150px] py-1.5  bg-teal-600  text-white font-medium rounded-lg hover:bg-teal-700 transition">
+                  Edit Details
+                </button></Link>
+                <Link to={``}><button className="mt-3 w-[150px] py-1.5 opacity-0 group-hover:opacity-100 bg-red-500 text-white font-medium rounded-lg hover:bg-teal-700 transition">
+                  Delete 
+                </button></Link>
+       </div>
+                <Link to={`/movies/${mycollection._id}`}><button className="mt-3 w-[300px] py-1.5 opacity-0 group-hover:opacity-100 bg-teal-600 text-white font-medium rounded-lg hover:bg-teal-700 transition">
+                  View Details
+                </button></Link>
+              </div>
+            </motion.div>)
+                }
+            </div>
         </div>
     );
 };

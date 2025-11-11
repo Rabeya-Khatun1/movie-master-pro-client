@@ -136,7 +136,7 @@ const ViewDetails = () => {
                     )}
                 </div>
             </div>
-            <button className='btn btn-primary p-3 rounded-2xl w-full my-3'><Link to='/movie/add'>Add a Movie</Link></button>
+           
         </div>
     );
 };

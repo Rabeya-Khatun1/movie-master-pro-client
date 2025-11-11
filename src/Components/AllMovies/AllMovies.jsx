@@ -87,6 +87,7 @@ const AllMovies = () => {
           </p>
         )}
       </div>
+    
     </section>
   );
 };

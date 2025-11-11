@@ -30,7 +30,7 @@ const newMovie = {
 }
 
 
-axios.post('/movies', newMovie)
+axios.post('/movies/add', newMovie)
 .then(result=> {
     console.log(result.data)
     toast.success('Your movie Added Succusfully')
@@ -74,7 +74,7 @@ setLoading(false)
                     <input onChange={handleOnChange} value={formData.cast} type="text" name='cast' placeholder='Cast  (comma separated)' className="input input-bordered w-full" />
                     <input onChange={handleOnChange} value={formData.posterUrl} type="url" name='posterUrl' placeholder='Poster URL' className="input input-bordered w-full" />
                     <textarea onChange={handleOnChange} value={formData.plotSummary} name="plotSummary" placeholder="Plot Summary" className="textarea textarea-bordered w-full"/>
-                    <input onChange={handleOnChange} value={formData.duration} type="text"name="duration"className="input input-bordered w-full"/>
+                    <input onChange={handleOnChange} value={formData.duration} type="text"name="duration" placeholder='Duration' className="input input-bordered w-full"/>
                     <input onChange={handleOnChange} value={formData.language} type="text" name="language" placeholder="Language" className="input input-bordered w-full"/>
                     <input onChange={handleOnChange} value={formData.rating} type="number" name="rating" placeholder="Rating (1-10)" className="input input-bordered w-full" min="1" max="10" />
 
@@ -85,106 +85,7 @@ setLoading(false)
                 </form>
 
 
-                {/* <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-
-                    <input
-                        type="text"
-                        name="title"
-                        placeholder="Movie Title *"
-                        value={formData.title}
-                        onChange={handleChange}
-                        className="input input-bordered w-full"
-                        required
-                    />
-                    <input
-                        type="text"
-                        name="genre"
-                        placeholder="Genre *"
-                        value={formData.genre}
-                        onChange={handleChange}
-                        className="input input-bordered w-full"
-                        required
-                    />
-                    <input
-                        type="number"
-                        name="releaseYear"
-                        placeholder="Release Year *"
-                        value={formData.releaseYear}
-                        onChange={handleChange}
-                        className="input input-bordered w-full"
-                        required
-                    />
-                    <input
-                        type="text"
-                        name="director"
-                        placeholder="Director"
-                        value={formData.director}
-                        onChange={handleChange}
-                        className="input input-bordered w-full"
-                    />
-                    <input
-                        type="text"
-                        name="cast"
-                        placeholder="Cast (comma separated)"
-                        value={formData.cast}
-                        onChange={handleChange}
-                        className="input input-bordered w-full"
-                    />
-
-                    <input
-                        type="url"
-                        name="posterUrl"
-                        placeholder="Poster URL"
-                        value={formData.posterUrl}
-                        onChange={handleChange}
-                        className="input input-bordered w-full"
-                    />
-
-                    <textarea
-                        name="plotSummary"
-                        placeholder="Plot Summary"
-                        value={formData.plotSummary}
-                        onChange={handleChange}
-                        className="textarea textarea-bordered w-full"
-                    />
-
-                    <input
-                        type="text"
-                        name="duration"
-                        placeholder="Duration (e.g., 2h 15min)"
-                        value={formData.duration}
-                        onChange={handleChange}
-                        className="input input-bordered w-full"
-                    />
-
-                    <input
-                        type="text"
-                        name="language"
-                        placeholder="Language"
-                        value={formData.language}
-                        onChange={handleChange}
-                        className="input input-bordered w-full"
-                    />
-
-                    <input
-                        type="number"
-                        name="rating"
-                        placeholder="Rating (1-10)"
-                        value={formData.rating}
-                        onChange={handleChange}
-                        className="input input-bordered w-full"
-                        min="1"
-                        max="10"
-                    />
-
-                    <button
-                        type="submit"
-                        className={`btn btn-primary mt-4 ${loading ? 'loading' : ''}`}
-                        disabled={loading}
-                    >
-                        {loading ? 'Adding...' : 'Add Movie'}
-                    </button>
-                </form> */}
+      
             </div>
         </div>
     );

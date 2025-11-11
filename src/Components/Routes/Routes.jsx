@@ -32,7 +32,7 @@ export const router = createBrowserRouter([
             Component: MyCollection,
         },
         {
-            path: '/movie/add',
+            path: '/movies/add',
             Component: AddMovie,
         },
         {
