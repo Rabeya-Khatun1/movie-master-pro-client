@@ -51,7 +51,7 @@ const UpdateMovieDetails = () => {
 
 
     const { addedBy, ...updatedData } = formData;
-
+console.log(addedBy)
     axios
       .patch(`/movies/update/${id}`, updatedData)
       .then((result) => {

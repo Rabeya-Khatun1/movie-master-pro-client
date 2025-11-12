@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import useAxios from '../../Hooks/useAxios';
 import useAuth from '../../Hooks/useAuth';
 import { motion } from "framer-motion";
 import { FaCalendarAlt, FaStar, FaTags } from 'react-icons/fa';
 import { Link } from 'react-router';
 import { toast } from 'react-toastify';
 import Swal from 'sweetalert2';
+import useAxiosSecure from '../../Hooks/useAxiosSecure';
 
 const MyCollection = () => {
 
     const {user, setloading} = useAuth()
-const axios = useAxios();
+const axios = useAxiosSecure();
 const [myCollections, setMyCollections] = useState([])
 
 useEffect( ()=>{
