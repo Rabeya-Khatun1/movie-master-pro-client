@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import useAxios from '../../Hooks/useAxios';
 import useAuth from '../../Hooks/useAuth';
 import {  useNavigate } from 'react-router';
 import Swal from 'sweetalert2';
 import { toast, ToastContainer } from 'react-toastify';
+import useAxiosSecure from '../../Hooks/useAxiosSecure';
 
 const AddMovie = () => {
-    const axios = useAxios();
+    const axios = useAxiosSecure();
     const { user } = useAuth();
     const navigate = useNavigate();
     const [loading, setLoading] = useState(false);

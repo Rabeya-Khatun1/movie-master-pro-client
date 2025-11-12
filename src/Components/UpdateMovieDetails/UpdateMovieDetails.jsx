@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import useAuth from '../../Hooks/useAuth';
-import useAxios from '../../Hooks/useAxios';
 import { useNavigate, useParams } from 'react-router';
 import { toast } from 'react-toastify';
+import useAxiosSecure from '../../Hooks/useAxiosSecure';
 
 const UpdateMovieDetails = () => {
   const { loading} = useAuth();
   const navigate = useNavigate();
   const { id } = useParams();
-  const axios = useAxios();
+  const axios = useAxiosSecure();
 
   const [formData, setFormData] = useState({
     title: '',
