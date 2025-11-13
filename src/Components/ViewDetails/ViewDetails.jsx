@@ -20,9 +20,8 @@ const ViewDetails = () => {
                 setDetails(result.data);
                 setLoading(false);
             })
-            .catch(error => {
-                console.error("Error fetching movie details:", error);
-
+            .catch(() => {
+              
                 setLoading(false);
             });
     }, [axios, id]);

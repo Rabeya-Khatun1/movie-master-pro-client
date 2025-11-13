@@ -19,7 +19,7 @@ const RecentlyAdded = () => {
 
   return (
     <div className="px-5 py-5">
-      <h1 className="text-5xl md:text-7xl text-center font-bold pb-8">Recently Added</h1>
+      <h1 className="text-3xl md:text-5xl text-center font-bold pb-8">Recently Added</h1>
 
       <Swiper
         speed={600}

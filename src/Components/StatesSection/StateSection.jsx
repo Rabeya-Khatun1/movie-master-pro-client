@@ -16,7 +16,7 @@ const StatsSection = () => {
        
         axios.get('/stats') 
             .then(res => {
-                console.log('reslt', res)
+                
                 setStats(res.data); 
               
             })

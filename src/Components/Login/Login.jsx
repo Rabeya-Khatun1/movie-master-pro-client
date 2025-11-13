@@ -17,10 +17,10 @@ const handleSignInUser = (e)=>{
   e.preventDefault();
   const email = e.target.email.value;
   const password = e.target.password.value;
-  console.log(email, password)
+ 
 signInUser(email, password)
 .then(result=>{
-  console.log(result)
+  
 navigate(location?.pathname || '/')
 
   toast.success('Successfully Logged In')
@@ -93,7 +93,7 @@ const handleGoogleSignIn = ()=>{
  {
                   error && <p className="text-red-500 text-sm mt-1">{error}</p>
                 }
-              <button type="submit" className="btn btn-neutral w-full mt-2">
+              <button type="submit" className="btn bg-teal-500 text-white w-full mt-2">
                Login
               </button>
 <p>New to Our website? Please <Link className='underline' to='/register'>Register</Link></p>

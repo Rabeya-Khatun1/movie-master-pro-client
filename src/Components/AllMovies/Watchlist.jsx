@@ -38,7 +38,7 @@ const Watchlist = () => {
     };
 
     fetchWatchlist();
-  }, [axiosSecure, user]);
+  }, [axios,axiosSecure, user]);
 
 //   can't complete 
   const handleDelete = (id)=>{
@@ -65,7 +65,8 @@ const Watchlist = () => {
     return <p className="text-center mt-10">Please login to view your watchlist.</p>;
 
   return (
-    <div className="pt-24 pb-20 bg-gray-900 min-h-screen">
+<div className="pt-24">
+      <div className="pt-24 pb-20 bg-gray-900 min-h-screen">
       <h2 className="text-3xl text-center text-white font-bold mb-8">My Watchlist</h2>
       <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 px-6">
         {movies.map(movie => (
@@ -89,6 +90,7 @@ const Watchlist = () => {
         ))}
       </div>
     </div>
+</div>
   );
 };
 

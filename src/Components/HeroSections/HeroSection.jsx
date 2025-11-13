@@ -17,7 +17,7 @@ const [loading, setLoading] = useState(true)
     axios.get('/movies')
       .then(res => {
         setLoading(false)
-        console.log('data is', res.data);
+    
         setMovies(res.data);
       })
       .catch(err => {
@@ -61,7 +61,7 @@ const [loading, setLoading] = useState(true)
         }
       </Swiper>
       {
-  loading ? <span className="loading loading-spinner loading-xl text-center"></span> : ' '
+  loading ? <span className="loading loading-spinner loading-xl text-center ml-36"></span> : ' '
 }
     </div>
   );

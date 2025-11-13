@@ -170,7 +170,7 @@ const handleGoogleSignIn = ()=>{
                 }
               </div>
 
-              <button type="submit" className="btn btn-neutral w-full mt-2">
+              <button type="submit" className="btn bg-teal-500 text-white w-full mt-2">
                 Create Account
               </button>
 <p>Already have an account? Please <Link className='underline' to='/login'>Login</Link></p>

@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router";
 
 const instance = axios.create({
-    baseURL: 'http://localhost:5000'
+    baseURL: 'https://movie-master-pro-server-iota.vercel.app'
 })
 
 
@@ -17,7 +17,7 @@ const navigate = useNavigate();
     const requestInterceptors=   instance.interceptors.request.use((config) => {
             const token = user.accessToken
             if(token){
-      console.log(token)
+    
             config.headers.authorization = `Bearer ${token}`
             }
       
@@ -28,14 +28,12 @@ const responseInterceptors =  instance.interceptors.response.use(res => {
 return res;
 }, err => {
 
-console.log(err)
 const status = err.status;
 if(status===401 || status === 403){
-    console.log('log out the user for bad request')
-    // logOutUser()
-    // .then( ()=>{
-    //     navigate('/login')
-    // })
+    logOutUser()
+    .then( ()=>{
+        navigate('/login')
+    })
 }
 
 })

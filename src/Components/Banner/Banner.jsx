@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from "framer-motion";
 import { useSpring, animated } from '@react-spring/web';
+import { Link } from 'react-router';
 
 const Banner = () => {
 
@@ -40,6 +41,7 @@ const Banner = () => {
 
     
           <motion.button
+
             className="btn btn-primary"
             whileHover={{ scale: 1.1, rotate: 3 }}
             whileTap={{ scale: 0.9 }}
@@ -47,7 +49,7 @@ const Banner = () => {
             animate={{ scale: 1 }}
             transition={{ duration: 0.5 }}
           >
-            Get Started
+           <Link to='/allMovies'> Get Started</Link>
           </motion.button>
         </div>
       </div>
