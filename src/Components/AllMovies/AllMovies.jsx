@@ -3,13 +3,30 @@ import { motion } from "framer-motion";
 import { FaStar, FaCalendarAlt, FaTags } from "react-icons/fa";
 import useAxios from "../../Hooks/useAxios";
 import { Link } from "react-router";
-
+import useAuth from '../../Hooks/useAuth'
+import { toast } from "react-toastify";
+import useAxiosSecure from '../../Hooks/useAxiosSecure'
 
 const AllMovies = () => {
 const [loading, setLoading] = useState(true)
-
+const {user} = useAuth()
   const axios = useAxios();
   const [movies, setMovies] = useState([]);
+  const axiosSecure = useAxiosSecure()
+const handleAddToWatchlist = (movieId)=>{
+if(!user){
+toast.error('You need to log in first!')
+}
+axiosSecure.post('/watchlist', {movieId})
+.then( ()=>{
+  toast.success('Added to watchList Successfully')
+})
+.catch(error => {
+  console.log(error)
+  toast.error(error.message)
+})
+
+}
 
   useEffect(() => {
 setLoading(true)
@@ -83,9 +100,15 @@ setLoading(true)
                     : movie.plotSummary}
                 </p>
 
-                <Link to={`/movies/${movie._id}`}><button className="mt-3 w-full py-1.5 bg-teal-600 text-white font-medium rounded-lg hover:bg-teal-700 transition">
+                <Link to={`/movies/${movies._id}`}><button className="mt-3 w-full py-1.5 bg-teal-600 text-white font-medium rounded-lg hover:bg-teal-700 transition">
                   View Details
                 </button></Link>
+                <button
+  onClick={() => handleAddToWatchlist(movie._id)}
+  className="mt-2 w-full py-1.5 bg-orange-500 text-white rounded hover:bg-orange-600 transition"
+>
+  Add to Watchlist
+</button>
               </div>
             </motion.div>
           ))}

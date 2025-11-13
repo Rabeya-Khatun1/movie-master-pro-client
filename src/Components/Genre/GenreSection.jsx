@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { FcSearch } from "react-icons/fc";
 import { motion } from "framer-motion";
 
@@ -12,6 +12,8 @@ import Horror from '../../assets/icons8-horror-48.png';
 import Fantasy from '../../assets/icons8-fantasy-48.png';
 import Documentary from '../../assets/icons8-document-64.png';
 import { toast } from 'react-toastify';
+import useAxios from '../../Hooks/useAxios';
+
 
 const staticGenres = [
   { name: "Action", icon: action },
@@ -25,11 +27,35 @@ const staticGenres = [
   { name: "Documentary", icon: Documentary },
 ];
 
+
+
 const GenreSection = () => {
 
+const axios = useAxios()
+const [movieCounts, setMovieCounts] = useState({})
+
+useEffect( ()=>
+{
+  const counts = {}
+  staticGenres.forEach((genre)=>{
+    axios.get(`/movies?genre=${genre.name}`)
+    .then(res => {
+      console.log(res.data)
+      counts[genre.name]= res.data.length
+      setMovieCounts({...counts})
+    })
+    .catch( (error)=>{
+      console.log(error)
+      counts[genre.name] = 0;
+      setMovieCounts({...counts})
+    })
+  })
+},[axios])
+
   const handleGenreClick = (genreName) => {
-    console.log(`Navigating to genre: ${genreName}`);
-    toast(`You clicked ${genreName}. This should now filter the movies!`);
+   const count = movieCounts[genreName] 
+
+    toast(`You clicked ${genreName}. Total movies: ${count}`);
   };
 
 
@@ -66,6 +92,7 @@ const GenreSection = () => {
           >
             <img src={genre.icon} alt={genre.name} className="w-10 h-10 mb-2" />
             <span>{genre.name}</span>
+            <small className="text-gray-400">{movieCounts[genre.name] || 0} movies</small>
           </motion.button>
         ))}
       </div>

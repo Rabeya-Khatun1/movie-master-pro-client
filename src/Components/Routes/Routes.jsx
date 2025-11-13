@@ -10,6 +10,7 @@ import ViewDetails from "../ViewDetails/ViewDetails";
 import AddMovie from "../AddMovies/AddMovies";
 import UpdateMovieDetails from "../UpdateMovieDetails/UpdateMovieDetails";
 import PrivateRoutes from "./PrivateRoutes";
+import Watchlist from "../AllMovies/Watchlist";
 
 
 
@@ -32,6 +33,10 @@ export const router = createBrowserRouter([
         {
             path: '/myCollection',
             element: <PrivateRoutes><MyCollection></MyCollection></PrivateRoutes>,
+        },
+        {
+            path: '/myWatchlist',
+            element: <PrivateRoutes><Watchlist></Watchlist></PrivateRoutes>,
         },
         {
             path: '/movies/update/:id',
