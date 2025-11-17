@@ -61,7 +61,8 @@ setLoading(true)
        ' '
 }
  <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {movies.map((movie, index) => (
+          {
+          movies.map((movie, index) => (
             <motion.div
               key={movie._id}
               initial={{ opacity: 0, y: 40 }}
@@ -100,7 +101,7 @@ setLoading(true)
                     : movie.plotSummary}
                 </p>
 
-                <Link to={`/movies/${movies._id}`}><button className="mt-3 w-full py-1.5 bg-teal-600 text-white font-medium rounded-lg hover:bg-teal-700 transition">
+                <Link to={`/movies/${movie._id}`}><button className="mt-3 w-full py-1.5 bg-teal-600 text-white font-medium rounded-lg hover:bg-teal-700 transition">
                   View Details
                 </button></Link>
                 <button

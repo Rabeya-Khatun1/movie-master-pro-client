@@ -79,11 +79,11 @@ const handleDelete = (movieId) => {
         <p className='text-gray-500 mb-6'>
           Please add your movies to see them here.
         </p>
-        <Link to="/add-movie">
+     
           <button className='bg-teal-600 text-white px-6 py-2 rounded-lg hover:bg-teal-700 transition'>
-            Add Movie
+           <Link to='/movies/add'> Add Movie</Link>
           </button>
-        </Link>
+
       </div>
     ) :
                <div>

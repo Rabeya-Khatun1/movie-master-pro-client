@@ -1,7 +1,7 @@
 import axios from "axios"
 
 const instance = axios.create({
-    baseURL: 'https://movie-master-pro-server-hazel.vercel.app'
+    baseURL: 'https://movie-master-pro-server-xi.vercel.app'
 })
 
 const useAxios = ()=>{
