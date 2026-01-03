@@ -11,6 +11,13 @@ import AddMovie from "../AddMovies/AddMovies";
 import UpdateMovieDetails from "../UpdateMovieDetails/UpdateMovieDetails";
 import PrivateRoutes from "./PrivateRoutes";
 import Watchlist from "../AllMovies/Watchlist";
+import Dashboard from "../dashboard/Dashboard";
+import Services from "../ExtraSections/Services";
+import Blog from "../ExtraSections/Blog";
+import PrivacyPollicy from "../ExtraSections/PrivacyPollicy";
+import AboutPlatform from "../AboutPlatform/About";
+import Contact from "../ExtraSections/Contact";
+import Cookie from "../ExtraSections/Cookie";
 
 
 
@@ -23,12 +30,35 @@ export const router = createBrowserRouter([
         {
             
             index:true,
-            path: '/',
             Component: Home,
         },
         {
             path: '/allmovies',
             Component: AllMovies,
+        },
+        {
+            path: '/services',
+            Component:Services,
+        },
+        {
+            path: '/blogs',
+            Component: Blog,
+        },
+        {
+            path: '/privacy-policy',
+            Component: PrivacyPollicy,
+        },
+        {
+            path: '/about',
+            Component: AboutPlatform,
+        },
+        {
+            path: '/contact',
+            Component: Contact,
+        },
+        {
+            path: '/cookies',
+            Component: Cookie,
         },
         {
             path: '/myCollection',
@@ -60,4 +90,9 @@ export const router = createBrowserRouter([
         },
     ]
   },
+  {
+    
+    path: 'dashboard',
+    element: <Dashboard></Dashboard>
+  }
 ]);

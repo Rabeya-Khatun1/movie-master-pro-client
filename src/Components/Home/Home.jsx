@@ -7,76 +7,66 @@ import TopRatedMovies from '../TopRatedMovie/TopRatedMovies';
 import RecentlyAdded from '../RecentlyAdded/RecentlyAdded';
 import GenreSection from '../Genre/GenreSection';
 import AboutPlatform from '../AboutPlatform/About';
+import Services from '../ExtraSections/Services';
+import Blog from '../ExtraSections/Blog';
+import PrivacyPollicy from '../ExtraSections/PrivacyPollicy';
+import Contact from '../ExtraSections/Contact';
+import Cookie from '../ExtraSections/Cookie';
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 50 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: 'easeOut' } },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.8, ease: 'easeOut' },
+  },
 };
 
 const Home = () => {
   return (
     <div className="bg-gray-100">
-      <motion.div
-        initial="hidden"
-        animate="visible"
-        variants={fadeInUp}
-      >
+
+      <motion.div id="banner" initial="hidden" animate="visible" variants={fadeInUp}>
         <Banner />
       </motion.div>
 
-      <motion.div
-        initial="hidden"
-        whileInView="visible"
-        variants={fadeInUp}
-        viewport={{ once: true }}
-      >
+      <motion.div id="hero" initial="hidden" whileInView="visible" variants={fadeInUp} viewport={{ once: true }}>
         <HeroSection />
       </motion.div>
 
-      <motion.div
-        initial="hidden"
-        whileInView="visible"
-        variants={fadeInUp}
-        viewport={{ once: true }}
-      >
+      <motion.div id="stats" initial="hidden" whileInView="visible" variants={fadeInUp} viewport={{ once: true }}>
         <StatsSection />
       </motion.div>
 
-      <motion.div
-        initial="hidden"
-        whileInView="visible"
-        variants={fadeInUp}
-        viewport={{ once: true }}
-      >
+      <motion.div id="topRated" initial="hidden" whileInView="visible" variants={fadeInUp} viewport={{ once: true }}>
         <TopRatedMovies />
       </motion.div>
 
-      <motion.div
-        initial="hidden"
-        whileInView="visible"
-        variants={fadeInUp}
-        viewport={{ once: true }}
-      >
+      <motion.div id="recent" initial="hidden" whileInView="visible" variants={fadeInUp} viewport={{ once: true }}>
         <RecentlyAdded />
       </motion.div>
 
-      <motion.div
-        initial="hidden"
-        whileInView="visible"
-        variants={fadeInUp}
-        viewport={{ once: true }}
-      >
+      <motion.div id="genre" initial="hidden" whileInView="visible" variants={fadeInUp} viewport={{ once: true }}>
         <GenreSection />
       </motion.div>
 
-      <motion.div
-        initial="hidden"
-        whileInView="visible"
-        variants={fadeInUp}
-        viewport={{ once: true }}
-      >
+      <motion.div id="about" initial="hidden" whileInView="visible" variants={fadeInUp} viewport={{ once: true }}>
         <AboutPlatform />
       </motion.div>
+
+      <motion.div id="services" initial="hidden" whileInView="visible" variants={fadeInUp} viewport={{ once: true }}>
+        <Services />
+      </motion.div>
+
+      <motion.div id="blog" initial="hidden" whileInView="visible" variants={fadeInUp} viewport={{ once: true }}>
+        <Blog />
+      </motion.div>
+
+      <motion.div id="contact" initial="hidden" whileInView="visible" variants={fadeInUp} viewport={{ once: true }}>
+        <Contact />
+      </motion.div>
+
+
     </div>
   );
 };

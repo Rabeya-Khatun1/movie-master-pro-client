@@ -38,6 +38,7 @@ setLoading(true)
         console.log(result.data);
         
         setMovies(result.data);
+        setLoading(false)
       })
       .catch((error) => {
         console.log(error);
@@ -57,7 +58,7 @@ setLoading(true)
           Explore <span className="text-teal-400">Movies</span>
         </motion.h2>
 {
-  loading && <FullScreenLoader></FullScreenLoader>
+  loading ? <FullScreenLoader></FullScreenLoader> : ' '
 }
  <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {

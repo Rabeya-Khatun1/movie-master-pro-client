@@ -17,7 +17,7 @@ const Footer = () => {
           <div className="flex flex-col gap-2">
             <a className="link link-hover transition-colors duration-300 hover:text-orange-400">About us</a>
             <a className="link link-hover transition-colors duration-300 hover:text-orange-400">Contact</a>
-            <a className="link link-hover transition-colors duration-300 hover:text-orange-400">Jobs</a>
+            <a className="link link-hover transition-colors duration-300 hover:text-orange-400">Services</a>
 
           </div>
         </nav>

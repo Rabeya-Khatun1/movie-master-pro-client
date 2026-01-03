@@ -15,8 +15,10 @@ const Register = () => {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const handleCreateUser = (e) => {
+  const handleCreateUser = async (e) => {
     e.preventDefault();
+    setError("");
+
     const name = e.target.name.value;
     const photoUrl = e.target.photoUrl.value;
     const email = e.target.email.value;
@@ -29,33 +31,29 @@ const Register = () => {
     if (!/[a-z]/.test(password))
       return setError("Password must contain one lowercase letter");
 
-    setLoading(true);
+    try {
+      setLoading(true);
 
-    createUser(email, password)
-      .then((result) => {
-        const user = result.user;
+      const result = await createUser(email, password);
+      const user = result.user;
 
-        updateUser({ displayName: name, photoURL: photoUrl }).then(() => {
-          setUser({ ...user, displayName: name, photoURL: photoUrl });
+      await updateUser({ displayName: name, photoURL: photoUrl });
+      setUser({ ...user, displayName: name, photoURL: photoUrl });
 
-          const newUser = {
-            name,
-            email: user.email,
-            image: photoUrl,
-          };
-
-          axios.post("/users", newUser).then(() => {
-            setLoading(false);
-            toast.success("Registration successful. Welcome!");
-            navigate("/");
-          });
-        });
-      })
-      .catch((err) => {
-        setLoading(false);
-        setError(err.message);
-        toast.error(err.message);
+      await axios.post("/users", {
+        name,
+        email: user.email,
+        image: photoUrl,
       });
+
+      toast.success("Registration successful. Welcome!");
+      navigate("/");
+    } catch (err) {
+      setError("Registration failed. Please try again");
+      toast.error("Registration failed");
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleGoogleSignIn = async () => {
@@ -74,8 +72,8 @@ const Register = () => {
 
       toast.success("Registration successful. Welcome!");
       navigate("/");
-    } catch (err) {
-      toast.error(err.message);
+    } catch {
+      toast.error("Google sign-in failed");
     } finally {
       setLoading(false);
     }
@@ -86,10 +84,10 @@ const Register = () => {
       className="min-h-screen pt-16 flex items-center justify-center bg-cover bg-center relative"
       style={{ backgroundImage: `url(${bgImage})` }}
     >
-      {/* Overlay */}
-      <div className="absolute inset-0 bg-black/60 z-0"></div>
+      <div className="absolute inset-0 bg-black/60" />
 
-      {/* Form Box */}
+      {loading && <FullScreenLoader />}
+
       <motion.div
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
@@ -98,7 +96,9 @@ const Register = () => {
       >
         {/* Header */}
         <div className="relative text-center mb-6">
-          <h1 className="text-3xl font-semibold tracking-wide">Movie Master Pro</h1>
+          <h1 className="text-3xl font-semibold tracking-wide">
+            Movie Master Pro
+          </h1>
           <span className="absolute right-6 top-0 text-[10px] bg-emerald-300 text-black px-2 py-0.5 rounded-full">
             BETA
           </span>
@@ -106,10 +106,6 @@ const Register = () => {
             Create your account to continue
           </p>
         </div>
-
-        {loading && (
-       <FullScreenLoader></FullScreenLoader>
-        )}
 
         <form onSubmit={handleCreateUser} className="space-y-4">
           {/* Name */}
@@ -151,8 +147,11 @@ const Register = () => {
             <p className="text-red-400 text-xs text-center">{error}</p>
           )}
 
-          <button className="w-full h-[44px] rounded-full bg-emerald-300 text-black font-semibold">
-            Create Account
+          <button
+            disabled={loading}
+            className="w-full h-[44px] rounded-full bg-emerald-300 text-black font-semibold disabled:opacity-50"
+          >
+            {loading ? "Creating account..." : "Create Account"}
           </button>
         </form>
 
@@ -171,7 +170,8 @@ const Register = () => {
 
         <button
           onClick={handleGoogleSignIn}
-          className="w-full h-[44px] rounded-full border border-gray-600 flex items-center justify-center gap-2 hover:bg-gray-800 transition"
+          disabled={loading}
+          className="w-full h-[44px] rounded-full border border-gray-600 flex items-center justify-center gap-2 hover:bg-gray-800 transition disabled:opacity-50"
         >
           <img
             src="https://www.svgrepo.com/show/475656/google-color.svg"

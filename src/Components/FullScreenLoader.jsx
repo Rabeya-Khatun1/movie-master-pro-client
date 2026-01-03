@@ -9,7 +9,7 @@ const FullScreenLoader = () => {
         animate={{ rotate: 360 }}
         transition={{ repeat: Infinity, duration: 1.2, ease: "linear" }}
       ></motion.div>
-     <span className="loading loading-spinner loading-xl text-center"></span>
+
     </div>
   );
 };
