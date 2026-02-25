@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { HiStar } from 'react-icons/hi2';
-import { FaQuoteLeft } from 'react-icons/fa';
+import { FaQuoteRight } from 'react-icons/fa';
 
 const testimonials = [
   {
@@ -18,7 +18,7 @@ const testimonials = [
     role: "Content Creator",
     image: "https://i.pravatar.cc/150?u=2",
     comment: "The UI is incredibly intuitive. I love how I can filter movies by genre and ratings so easily. Highly recommended!",
-    rating: 4
+    rating: 5
   },
   {
     id: 3,
@@ -26,76 +26,72 @@ const testimonials = [
     role: "Casual Viewer",
     image: "https://i.pravatar.cc/150?u=3",
     comment: "The watchlist feature helps me keep track of my weekend plans. The dark mode is just the cherry on top!",
-    rating: 5
+    rating: 4
   }
 ];
 
 const Testimonials = () => {
   return (
-    <section className="mt-20 md:mt-28 bg-secondary overflow-hidden">
+    <section className="py-16 overflow-hidden transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         
-        
-        <div className="text-center mb-16">
-          <motion.span 
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            className="text-highlight font-bold tracking-[0.3em] uppercase text-xs"
-          >
-            User Feedback
-          </motion.span>
+        {/* Section Header */}
+        <div className="text-center mb-20">
           <motion.h2 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
-            className="text-4xl md:text-5xl font-black italic mt-3 dark:text-white"
+            className="text-4xl md:text-6xl font-black italic text-base-content tracking-tighter"
           >
-            What Our <span className="text-highlight">Cinephiles</span> Say
+            What Our <span className="text-primary">Cinephiles</span> Say
           </motion.h2>
+          <div className="w-24 h-1 bg-primary mx-auto mt-6 rounded-full opacity-50"></div>
         </div>
 
-      
+        {/* Testimonials Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {testimonials.map((item, index) => (
             <motion.div
               key={item.id}
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: index * 0.2, duration: 0.5 }}
+              transition={{ delay: index * 0.1 }}
               whileHover={{ y: -10 }}
-              className="relative bg-dark dark:bg-gray-800 p-8 rounded-2xl border border-base-300 dark:border-gray-700 shadow-xl group"
+              className="relative bg-base-200 p-10 rounded-[var(--radius-box)] border border-base-300 shadow-sm hover:shadow-2xl transition-all duration-500 group"
             >
-     
-              <div className="absolute top-6 right-8 text-highlight-100 text-6xl group-hover:text-highlight transition-colors">
-                <FaQuoteLeft />
+              {/* Quote Icon Overlay */}
+              <div className="absolute top-6 right-8 text-primary/10 text-7xl group-hover:text-primary/20 transition-colors pointer-events-none">
+                <FaQuoteRight />
               </div>
 
-   
-              <div className="flex gap-1 mb-6">
+              {/* Stars */}
+              <div className="flex gap-1 mb-8">
                 {[...Array(5)].map((_, i) => (
                   <HiStar 
                     key={i} 
-                    className={`text-lg ${i < item.rating ? "text-highlight" : "text-highlight-100"}`} 
+                    className={`text-xl ${i < item.rating ? "text-primary" : "text-base-content/20"}`} 
                   />
                 ))}
               </div>
 
-
-              <p className="text-gray-600 dark:text-gray-300 italic mb-8 relative z-10 leading-relaxed">
+              {/* Comment */}
+              <p className="text-base-content/70 italic mb-10 text-lg leading-relaxed relative z-10">
                 "{item.comment}"
               </p>
 
-    
-              <div className="flex items-center gap-4">
-                <div className="w-14 h-14 rounded-2xl overflow-hidden ring-4 ring-teal-500/20">
-                  <img src={item.image} alt={item.name} className="w-full h-full object-cover" />
+              {/* User Info */}
+              <div className="flex items-center gap-5 border-t border-base-300 pt-8">
+                <div className="w-16 h-16 rounded-2xl overflow-hidden ring-4 ring-primary/10 shadow-xl">
+                  <img src={item.image} alt={item.name} className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" />
                 </div>
                 <div>
-                  <h4 className="font-black text-gray-900 dark:text-white">{item.name}</h4>
-                  <p className="text-xs font-bold text-highlight uppercase tracking-widest">{item.role}</p>
+                  <h4 className="font-black text-xl text-base-content leading-none mb-2">{item.name}</h4>
+                  <p className="text-xs font-bold text-primary uppercase tracking-widest">{item.role}</p>
                 </div>
               </div>
+
+              {/* Subtle Decorative Gradient */}
+              <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-primary to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
             </motion.div>
           ))}
         </div>

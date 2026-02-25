@@ -16,11 +16,10 @@ import { GoCodeReview } from "react-icons/go";
 import { AiOutlineMail } from "react-icons/ai";
 import Logo from '../logo/Logo';
 
-
 const Navbar = ({ setActiveSection, activeSection }) => {
   const { user, logOutUser } = useAuth();
   const navigate = useNavigate();
-  const location = useLocation(); 
+  const location = useLocation();
   const [theme, setTheme] = useState(() => localStorage.getItem("theme") || 'light');
   const [searchQuery, setSearchQuery] = useState("");
 
@@ -41,25 +40,22 @@ const Navbar = ({ setActiveSection, activeSection }) => {
   };
 
   const navItemClass = ({ isActive }) =>
-    `flex items-center gap-2 px-3 py-2 rounded-2xl transition-all duration-300
+    `flex items-center gap-2.5 px-4 py-2.5 rounded-xl text-base font-medium transition-all duration-300
      ${isActive
-       ? "bg-primary hover:bg-primary-100 text-white shadow-md scale-[1.03]"
-       : " text-highlight hover:bg-primary "
+       ? "bg-primary/90 text-white shadow-md shadow-primary/30 scale-[1.04]"
+       : "text-gray-200 hover:bg-primary/20 hover:text-white hover:shadow-sm"
      }`;
 
-const scrollItemClass = (id) => `
-  flex items-center gap-2 px-3 py-2 rounded-2xl transition-all duration-300
-  ${activeSection === id
-    ? "bg-primary text-white shadow-md scale-[1.03] pointer-events-none"
-    : "text-black bg-primary-100 hover:bg-primary hover:text-white"
-  }
-`;
-
-
+  const scrollItemClass = (id) => `
+    flex items-center gap-2.5 px-4 py-2.5 rounded-xl text-base font-medium transition-all duration-300
+    ${activeSection === id
+      ? "bg-primary/90 text-white shadow-md shadow-primary/30 scale-[1.04] pointer-events-none"
+      : "text-gray-200 hover:bg-primary/20 hover:text-white hover:shadow-sm"
+    }
+  `;
 
   const handleScroll = (id) => {
     if (location.pathname !== '/') {
-   
       navigate('/', { state: { scrollTo: id } });
     } else {
       const el = document.getElementById(id);
@@ -70,200 +66,217 @@ const scrollItemClass = (id) => `
     }
   };
 
-const publicLinks = [
-  { to: "/", label: "Home", icon: <CiHome /> },
-  { to: "/allMovies", label: "All Movies", icon: <BiMoviePlay /> },
-];
-
+  const publicLinks = [
+    { to: "/", label: "Home", icon: <CiHome className="text-lg" /> },
+    { to: "/allMovies", label: "All Movies", icon: <BiMoviePlay className="text-lg" /> },
+  ];
 
   const defaultLinks = (
     <>
-      <NavLink to="/about" className={navItemClass}><MdOutlineRoundaboutLeft /> About</NavLink>
-      <NavLink to="/contact" className={navItemClass}><RiContactsLine /> Contact</NavLink>
-      <NavLink to="/privacy-policy" className={navItemClass}><MdOutlinePrivacyTip /> Privacy Policy</NavLink>
-      <NavLink to="/cookies" className={navItemClass}><BiCookie /> Cookie Policy</NavLink>
-      <NavLink to="/blogs" className={navItemClass}><GrBlog /> Blog</NavLink>
-      <NavLink to="/testimonial" className={navItemClass}><GoCodeReview /> Testimonial</NavLink>
-      <NavLink to="/news-letter" className={navItemClass}><AiOutlineMail />News Letter</NavLink>
-      <NavLink to="/services" className={navItemClass}><MdOutlineHomeRepairService /> Services</NavLink>
+      <NavLink to="/about" className={navItemClass}><MdOutlineRoundaboutLeft className="text-lg" /> About</NavLink>
+      <NavLink to="/contact" className={navItemClass}><RiContactsLine className="text-lg" /> Contact</NavLink>
+      <NavLink to="/privacy-policy" className={navItemClass}><MdOutlinePrivacyTip className="text-lg" /> Privacy</NavLink>
+      <NavLink to="/cookies" className={navItemClass}><BiCookie className="text-lg" /> Cookies</NavLink>
+      <NavLink to="/blogs" className={navItemClass}><GrBlog className="text-lg" /> Blog</NavLink>
+      <NavLink to="/testimonial" className={navItemClass}><GoCodeReview className="text-lg" /> Testimonials</NavLink>
+      <NavLink to="/news-letter" className={navItemClass}><AiOutlineMail className="text-lg" /> Newsletter</NavLink>
+      <NavLink to="/services" className={navItemClass}><MdOutlineHomeRepairService className="text-lg" /> Services</NavLink>
     </>
   );
 
   const userLinks = (
     <>
-      <NavLink to="/myCollection" className={navItemClass}><BsCollectionPlay /> My Collection</NavLink>
-      <NavLink to="/myWatchlist" className={navItemClass}><CiBoxList /> My Watchlist</NavLink>
-      <NavLink to="/dashboard" className={navItemClass}><MdOutlineDashboardCustomize /> Dashboard</NavLink>
+      <NavLink to="/myCollection" className={navItemClass}><BsCollectionPlay className="text-lg" /> Collection</NavLink>
+      <NavLink to="/myWatchlist" className={navItemClass}><CiBoxList className="text-lg" /> Watchlist</NavLink>
+      <NavLink to="/dashboard" className={navItemClass}><MdOutlineDashboardCustomize className="text-lg" /> Dashboard</NavLink>
     </>
   );
 
-const scrollLinks = [
-  { id: "stats", label: "Stats", icon: <IoStatsChartOutline />},
-  { id: "topRated", label: "Top Rated", icon: <BiMoviePlay /> },
-  { id: "recent", label: "Recent", icon: <MdOutlineRecentActors/>},
-  { id: "contact", label: "Contact", icon: <RiContactsLine /> },
-  
-  { id: "services", label: "Services", icon: <MdOutlineFeaturedPlayList /> },
-  { id: "blog", label: "Blog", icon:<GrBlog /> },
-  { id: "news-letter", label: "News Letter", icon:<AiOutlineMail />},
-  { id: "testimonial", label: "Testimonial", icon:<GoCodeReview />},
-  { id: "about", label: "About", icon:<MdOutlineRoundaboutLeft /> },
-];
+  const scrollLinks = [
+    { id: "stats", label: "Stats", icon: <IoStatsChartOutline className="text-lg" /> },
+    { id: "topRated", label: "Top Rated", icon: <BiMoviePlay className="text-lg" /> },
+    { id: "recent", label: "Recent", icon: <MdOutlineRecentActors className="text-lg" /> },
+    { id: "contact", label: "Contact", icon: <RiContactsLine className="text-lg" /> },
+    { id: "services", label: "Services", icon: <MdOutlineFeaturedPlayList className="text-lg" /> },
+    { id: "blog", label: "Blog", icon: <GrBlog className="text-lg" /> },
+    { id: "news-letter", label: "Newsletter", icon: <AiOutlineMail className="text-lg" /> },
+    { id: "testimonial", label: "Testimonials", icon: <GoCodeReview className="text-lg" /> },
+    { id: "about", label: "About", icon: <MdOutlineRoundaboutLeft className="text-lg" /> },
+  ];
 
-
-const handleSearch = (e) => {
-  e.preventDefault();
-  if (!searchQuery.trim()) return;
-  
-
-  console.log("Searching for:", searchQuery);
-  navigate(`/allMovies?search=${searchQuery}`);
-};
+  const handleSearch = (e) => {
+    e.preventDefault();
+    if (!searchQuery.trim()) return;
+    navigate(`/allMovies?search=${encodeURIComponent(searchQuery)}`);
+  };
 
   return (
-    <div className="navbar fixed top-0 left-0 right-0 z-50  shadow-md  px-6 lg:px-8">
-
-      <div className="navbar-start flex items-center gap-4">
-
-        <div className="dropdown">
-          <div tabIndex={0} className="btn bg-primary lg:hidden">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none"
-              viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round"
-                strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" />
+    <div className="navbar fixed top-0 left-0 right-0 z-50 bg-gradient-to-b from-black/80 via-black/70 to-transparent backdrop-blur-md border-b border-white/5 shadow-lg">
+      <div className="navbar-start flex items-center gap-5 lg:gap-8">
+        {/* Mobile Hamburger */}
+        <div className="dropdown lg:hidden">
+          <label tabIndex={0} className="btn btn-ghost btn-circle text-white hover:bg-primary/30">
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
             </svg>
-          </div>
-     <ul className="menu menu-sm dropdown-content bg-secondary rounded-2xl mt-3 w-56 p-3 shadow-xl gap-1">
-  {publicLinks.map(link => (
-    <NavLink key={link.to} to={link.to} className={navItemClass}>
-      {link.icon}
-      {link.label}
-    </NavLink>
-  ))}
-  {user ? userLinks : defaultLinks}
-</ul>
-
+          </label>
+          <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[100] p-4 shadow-2xl bg-base-900/95 backdrop-blur-lg rounded-2xl w-72 border border-white/10 max-h-[80vh] overflow-y-auto">
+            {publicLinks.map(link => (
+              <li key={link.to}>
+                <NavLink to={link.to} className={navItemClass}>
+                  {link.icon} {link.label}
+                </NavLink>
+              </li>
+            ))}
+            {user ? userLinks : defaultLinks}
+          </ul>
         </div>
 
-
-
-      <div className="hidden md:flex items-center gap-2">
-<Logo></Logo>
-</div>
-
+        {/* Logo */}
+        <div className="flex items-center gap-3">
+      
+          <Link to="/" className="flex items-center gap-2 text-xl md:text-2xl font-bold text-white tracking-tight hover:text-primary transition-colors">
+                <div className="hidden md:block">
+            <Logo />
+          </div>
+          </Link>
+        </div>
       </div>
 
-<div className="navbar-center hidden lg:flex">
-<ul className="menu menu-horizontal px-1 gap-2">
-  {publicLinks.map(link => (
-    <li key={link.to} className="relative group">
-      {user ? (
-     
+      {/* Desktop Center Menu */}
+   {/* Desktop Center Menu */}
+<div className="navbar-center hidden lg:flex flex-1 justify-center overflow-x-auto max-w-full scrollbar-thin scrollbar-thumb-primary/50 scrollbar-track-base-900/40">
+  <ul className="menu menu-horizontal px-1 gap-2 flex-nowrap min-w-max">
+    {publicLinks.map(link => (
+      <li key={link.to}>
         <NavLink to={link.to} className={navItemClass}>
-          {link.icon}
-          {link.label}
+          {link.icon} {link.label}
         </NavLink>
-      ) : (
-        
-        <NavLink
-          to={link.to}
-          className="text-2xl text-gray-700 hover:text-teal-600"
-        >
-          {link.icon}
+      </li>
+    ))}
 
-          <span
-            className="absolute -bottom-10 left-1/2 -translate-x-1/2
-            scale-0 group-hover:scale-100 transition-transform
-            bg-black text-white text-xs px-3 py-1 rounded-2xl whitespace-nowrap"
-          >
-            {link.label}
-          </span>
-        </NavLink>
-      )}
-    </li>
-  ))}
-
-  {user
-    ? userLinks
-    : scrollLinks.map(link => (
-        <li key={link.id} className="relative group">
-          <button
-            onClick={() => handleScroll(link.id)}
-            className={scrollItemClass(link.id)}
-          >
-            <span className={`${activeSection === link.id ? 'bg-primary' : 'bg-primary-100'} text-xl`}>
-              {link.icon}
-            </span>
-          </button>
-
-          <span className="absolute -bottom-8 left-1/2 -translate-x-1/2 px-2 py-1 text-xs text-white bg-gray-800 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap z-50">
-            {link.label}
-          </span>
-        </li>
-      ))}
-</ul>
-
-
+    {user
+      ? userLinks
+      : scrollLinks.map(link => (
+          <li key={link.id}>
+            <button
+              onClick={() => handleScroll(link.id)}
+              className={scrollItemClass(link.id)}
+            >
+              {link.icon} {link.label}
+            </button>
+          </li>
+        ))}
+  </ul>
 </div>
 
-
-     
-      <div className="navbar-end flex items-center gap-4">
+      {/* Right Side */}
+      <div className="navbar-end flex items-center gap-4 lg:gap-6">
         {user ? (
           <>
-        <form onSubmit={handleSearch}>
-              <input 
-    type="text" 
-    placeholder="Search movies..." 
-    value={searchQuery}
-    onChange={(e) => setSearchQuery(e.target.value)}
-    className="input input-bordered w-24 md:w-40 lg:w-52 h-10 transition-all focus:w-32 md:focus:w-60" 
-  />
-      </form>      <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2, duration: 0.4 }}
-              whileHover={{ scale: 1.05 }}
+            {/* Search */}
+            <form onSubmit={handleSearch} className="relative">
+              <input
+                type="text"
+                placeholder="Search movies..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="input input-bordered bg-base-900/60 border-white/10 text-white placeholder:text-gray-400
+                           w-40 md:w-56 lg:w-64 focus:w-72 transition-all duration-300 rounded-xl h-11 pl-4 pr-10
+                           focus:bg-base-900/80 focus:border-primary/50 focus:shadow-md focus:shadow-primary/20"
+              />
+              <button type="submit" className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-primary">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
+              </button>
+            </form>
+
+            {/* Add Movie Button */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              whileHover={{ scale: 1.08 }}
             >
               <Link to="/movies/add">
-                <motion.button
-                  whileHover={{ scale: 1.05, boxShadow: "0px 0px 10px rgba(45,212,191,0.6)" }}
-                  whileTap={{ scale: 0.95 }}
-                  className="flex items-center gap-2 px-4 py-2 bg-primary text-white font-medium rounded-2xl shadow-md transition-all"
-                >
-                  <FaPlus className="text-white" />
-                </motion.button>
+                <button className="btn btn-primary gap-2 rounded-xl shadow-lg shadow-primary/30 hover:shadow-primary/50 transition-shadow px-5">
+                  <FaPlus /> Add Movie
+                </button>
               </Link>
             </motion.div>
 
+            {/* User Dropdown */}
             <div className="dropdown dropdown-end">
-              <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
-                <div className="w-10 rounded--2xl">
-                  <img alt="User avatar" src={user?.photoURL || "https://i.ibb.co/4pDNDk1/avatar.png"} />
+              <label tabIndex={0} className="btn btn-ghost btn-circle avatar hover:bg-primary/20">
+                <div className="w-11 rounded-full ring-2 ring-primary/40 ring-offset-2 ring-offset-base-900">
+                  <img
+                    alt="User avatar"
+                    src={user?.photoURL || "https://i.ibb.co/4pDNDk1/avatar.png"}
+                  />
                 </div>
-              </div>
-              <ul tabIndex="-1" className="menu menu-sm dropdown-content bg-secondary rounded-box mt-3 w-52 p-2 shadow">
-                <li><a>{user?.displayName}</a></li>
-                <li className='cursor-pointer m-3 hover:text-secondary text-highlight' onClick={handleToggle}>
-                  {theme === "light" ? " Light" : " Dark"}
-                </li>
-              <li className='my-1 border-t border-gray-200'>  {defaultLinks}</li>
-                <li className='text-red-500' onClick={handleLogOut}><a><CiLogout /> Logout</a></li>
-              </ul>
+              </label>
+<ul
+  tabIndex={0}
+  className="dropdown-content mt-3 z-[100] w-64 
+             bg-black
+             rounded-2xl border border-white/10 
+             shadow-2xl flex flex-col"
+>
+
+  {/* User Name */}
+  <div className="px-4 py-3 border-b border-white/10 text-gray-200 font-semibold">
+    {user?.displayName || "User"}
+  </div>
+
+  {/* Scrollable Routes */}
+  <div className="flex-1 overflow-y-auto p-2 space-y-1 max-h-60">
+    {defaultLinks}
+    {userLinks}
+  </div>
+
+  {/* Bottom Fixed Actions */}
+  <div className="border-t border-white/10 p-3 flex flex-col gap-2">
+
+    {/* Theme Toggle */}
+    <button
+      onClick={handleToggle}
+      className="w-full py-2 rounded-lg bg-primary/20 text-white hover:bg-primary/40 transition"
+    >
+      {theme === "light" ? "🌙 Dark Mode" : "☀️ Light Mode"}
+    </button>
+
+    {/* Logout */}
+    <button
+      onClick={handleLogOut}
+      className="w-full py-2 rounded-lg bg-red-500/20 text-red-400 hover:bg-red-500/30 transition"
+    >
+      Logout
+    </button>
+
+  </div>
+</ul>
+
             </div>
           </>
         ) : (
-          <div className='navbar-end'>
-             <li className='cursor-pointer text-highlight m-2' onClick={handleToggle}>
-                  {theme === "light" ? " Dark" : " Light"}
-                </li>
-            <button className='btn btn-primary'>
-              <Link to='/login'>Login</Link> / <Link to='/register'>Register</Link>
+          <div className="flex items-center gap-4">
+            <button
+              onClick={handleToggle}
+              className="btn btn-ghost text-gray-200 hover:text-primary hover:bg-primary/10 rounded-xl px-4"
+            >
+              {theme === "light" ? "🌙 Dark" : "☀️ Light"}
             </button>
+
+            <Link to="/login" className="btn btn-outline btn-primary rounded-xl px-6">
+              Login
+            </Link>
+
+            <Link to="/register" className="btn btn-primary rounded-xl px-6 shadow-lg shadow-primary/30">
+              Register
+            </Link>
           </div>
         )}
       </div>
-      
     </div>
   );
 };

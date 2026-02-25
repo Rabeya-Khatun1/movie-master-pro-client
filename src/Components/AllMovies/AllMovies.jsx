@@ -78,7 +78,7 @@ const AllMovies = () => {
       <title>MovieMASTERpro | Movies</title>
       <ToastContainer />
       <div className="max-w-7xl mx-auto px-6">
-        <h2 className="text-4xl font-bold text-center mb-10 text-gray-700">
+        <h2 className="text-4xl font-bold text-center mb-10 text-white">
           Explore <span className="text-primary">Movies</span>
         </h2>
 

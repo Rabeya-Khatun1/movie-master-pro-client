@@ -41,16 +41,15 @@ const Blog = () => {
     ];
 
     return (
-        <div className="min-h-screen bg-secondary px-4 md:px-12 lg:px-24 mt-20 md:mt-28">
+        <div className="min-h-screen px-4 md:px-12 lg:px-24 mt-20 md:mt-28">
             <title>MOVIEMASTERpro | </title>
             <div className="max-w-7xl mx-auto">
                 
               
                 <div className="flex flex-col md:flex-row justify-between items-center md:items-end mb-16 gap-8 text-center md:text-left">
                     <div className="max-w-xl">
-                        <span className="text-primary font-bold tracking-[0.3em] uppercase text-sm">Cine-Journal</span>
                         <h1 className="text-5xl md:text-6xl font-black mt-2 mb-4 italic">Latest Stories</h1>
-                        <p className="opacity-70 text-lg border-l-0 md:border-l-4 border-primary md:pl-6">
+                        <p className="opacity-70 text-lg border-l-0 md:border-l-4 md:pl-6">
                             Stay updated with the latest trends, reviews, and technology in the world of cinema.
                         </p>
                     </div>
@@ -99,21 +98,6 @@ const Blog = () => {
                             </div>
                         </div>
                     ))}
-                </div>
-
-                {/* --- Newsletter --- */}
-                <div className="mt-24 p-12 rounded-2xl bg-secondary text-neutral-content relative overflow-hidden text-center md:text-left">
-                    <div className="absolute -top-10 -right-10 w-64 h-64 bg-primary/20 rounded-2xl blur-3xl"></div>
-                    <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-10">
-                        <div className="max-w-md">
-                            <h2 className="text-4xl font-black mb-4 italic">Join the Cinephile Club</h2>
-                            <p className="opacity-70">Weekly movie recommendations and exclusive tech insights delivered to your inbox.</p>
-                        </div>
-                        <div className="flex flex-col sm:flex-row gap-3 w-full max-w-lg">
-                            <input type="email" placeholder="Your movie-loving email" className="input input-bordered input-lg w-full rounded-2xl text-base-content" />
-                            <button className="btn btn-primary btn-lg rounded-2xl px-10">Subscribe</button>
-                        </div>
-                    </div>
                 </div>
 
                 {/* --- Read More Modal --- */}

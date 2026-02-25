@@ -66,7 +66,7 @@ const Services = () => {
     ];
 
     return (
-        <div className="min-h-screen bg-secondary px-4 mt-20 md:mt-28 md:px-12 lg:px-24">
+        <div className="min-h-screen px-4 mt-20 md:mt-28 md:px-12 lg:px-24">
             <div className="max-w-7xl mx-auto">
         
                 <div className="text-center mb-20">
@@ -163,19 +163,28 @@ const Services = () => {
                     </div>
                 )}
 
-                {/* Bottom CTA */}
-                <div className="mt-24 p-12 rounded-2xl bg-neutral text-neutral-content text-center relative overflow-hidden">
-                    <div className="absolute top-0 right-0 w-64 h-64 bg-primary/20 rounded-2xl -mr-32 -mt-32 blur-3xl"></div>
-                    <div className="absolute bottom-0 left-0 w-64 h-64 bg-secondary/20 rounded-2xl -ml-32 -mb-32 blur-3xl"></div>
-                    
-                    <h2 className="text-3xl md:text-5xl font-black mb-6 italic">Ready to build your collection?</h2>
-                    <p className="mb-10 opacity-80 max-w-xl mx-auto text-lg">Join our community today and start tracking your favorite movies with ease.</p>
-                    <Link to='/movies/add'>
-                        <button className="btn btn-primary btn-lg rounded-2xl px-12 hover:scale-105 transition-transform">
-                            Start Tracking Now
-                        </button>
-                    </Link>
-                </div>
+          {/* Bottom CTA */}
+<div className="mt-24 p-8 md:p-16 rounded-[var(--radius-box)] bg-base-300 text-base-content text-center relative overflow-hidden border border-base-100 shadow-2xl">
+    {/* Background Glows with Theme Colors */}
+    <div className="absolute top-0 right-0 w-64 h-64 bg-primary/20 rounded-full -mr-32 -mt-32 blur-[80px]"></div>
+    <div className="absolute bottom-0 left-0 w-64 h-64 bg-primary/10 rounded-full -ml-32 -mb-32 blur-[80px]"></div>
+    
+    <div className="relative z-10">
+        <h2 className="text-3xl md:text-5xl font-black mb-6 italic tracking-tight text-base-content">
+            Ready to build your <span className="text-primary">collection?</span>
+        </h2>
+        
+        <p className="mb-10 text-base-content/70 max-w-xl mx-auto text-lg leading-relaxed">
+            Join our community today and start tracking your favorite movies with ease.
+        </p>
+        
+        <Link to='/movies/add'>
+            <button className="btn btn-primary btn-lg rounded-[var(--radius-button)] px-12 hover:scale-105 transition-all shadow-lg shadow-primary/20 border-none font-bold uppercase tracking-wider">
+                Start Tracking Now
+            </button>
+        </Link>
+    </div>
+</div>
             </div>
         </div>
     );

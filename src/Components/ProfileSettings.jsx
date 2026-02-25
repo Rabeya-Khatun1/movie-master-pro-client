@@ -71,12 +71,12 @@ const ProfileSettings = () => {
   };
 
   return (
-    <div className="min-h-screen bg-secondary  py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-secondary px-4 sm:px-6 lg:px-8">
       <title>MOVIEMASTERpro | Profile Settings</title>
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="max-w-5xl mx-auto pt-16"
+        className="max-w-5xl mx-auto pt-5"
       >
         <ToastContainer position="top-right" autoClose={3000} />
 

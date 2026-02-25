@@ -18,7 +18,7 @@ const RecentlyAdded = () => {
   }, [axios]);
 
   return (
-    <div className="px-5 my-20 mt:mt-28">
+    <div className="px-5">
       <h1 className="text-xl bg-black rounded-r-2xl w-[200px]  text-gray-400 font-bold p-2 mb-4 ">Recently Added</h1>
 
       <Swiper

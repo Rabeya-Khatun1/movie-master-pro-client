@@ -108,7 +108,7 @@ const [isModalOpen, setIsModalOpen] = React.useState(false);
                 <div className="group flex justify-between items-center p-4 bg-secondary hover:bg-dark rounded-2xl border border-transparent hover:border-primary/20 transition-all">
                     <div className="flex-1">
                         <h4 className="font-bold text-black text-sm">Strictly Necessary</h4>
-                        <p className="text-[10px] opacity-60 text-gray-700">Required for site security and login.</p>
+                        <p className="text-[10px] opacity-60 text-white">Required for site security and login.</p>
                     </div>
                     <input type="checkbox" className="toggle toggle-primary toggle-sm" checked disabled />
                 </div>
@@ -117,7 +117,7 @@ const [isModalOpen, setIsModalOpen] = React.useState(false);
                 <div className="group flex justify-between items-center p-4 bg-secondary hover:bg-dark rounded-2xl border border-transparent hover:border-secondary/20 transition-all">
                     <div className="flex-1">
                         <h4 className="font-bold text-black text-sm">Performance Tools</h4>
-                        <p className="text-[10px] opacity-60 text-gray-700">Help us understand how you use the site.</p>
+                        <p className="text-[10px] opacity-60 text-white">Help us understand how you use the site.</p>
                     </div>
                     <input type="checkbox" className="toggle toggle-secondary toggle-sm" defaultChecked />
                 </div>
@@ -125,7 +125,7 @@ const [isModalOpen, setIsModalOpen] = React.useState(false);
                 <div className="group flex justify-between items-center p-4 bg-secondary hover:bg-dark rounded-2xl border border-transparent hover:border-accent/20 transition-all">
                     <div className="flex-1">
                         <h4 className="font-bold text-black text-sm">Personalization</h4>
-                        <p className="text-[10px] opacity-60 text-gray-700">Saves your theme and language settings.</p>
+                        <p className="text-[10px] opacity-60 text-white">Saves your theme and language settings.</p>
                     </div>
                     <input type="checkbox" className="toggle toggle-accent toggle-sm" defaultChecked />
                 </div>
@@ -135,7 +135,7 @@ const [isModalOpen, setIsModalOpen] = React.useState(false);
        
             <div className="flex gap-3 mt-10">
                 <button 
-                    className="btn btn-ghost text-gray-700 flex-1 rounded-2xl" 
+                    className="btn btn-ghost text-white flex-1 rounded-2xl" 
                     onClick={() => setIsModalOpen(false)}
                 >
                     Dismiss

@@ -14,7 +14,7 @@ const PrivacyPolicy = () => {
     ];
 
     return (
-        <div className="min-h-screen bg-secondary text-base-content py-12 px-4 md:px-12 lg:px-24 pt-20">
+        <div className="min-h-screen bg-secondary text-base-content px-4 md:px-12 lg:px-24 pt-28">
             <div className="max-w-6xl mx-auto flex flex-col lg:flex-row gap-12">
                 
                 {/* Left Side: Sticky Navigation (Desktop Only) */}

@@ -3,53 +3,85 @@ import { motion } from "framer-motion";
 import { FaFilm, FaStar, FaCloudDownloadAlt, FaUserFriends } from "react-icons/fa";
 
 const AboutPlatform = () => {
-
-
-const about = [
-            { icon: <FaFilm />, title: "Vast Library", desc: "Access thousands of movies across all genres." },
-            { icon: <FaStar />, title: "Top Rated Picks", desc: "Discover trending and critically acclaimed films." },
-            { icon: <FaCloudDownloadAlt />, title: "Offline Mode", desc: "Save your favorites and watch anytime." },
-            { icon: <FaUserFriends />, title: "Community", desc: "Join a community of movie lovers worldwide." },
-          ]
-
+  const features = [
+    { 
+      icon: <FaFilm />, 
+      title: "Vast Library", 
+      desc: "Access thousands of movies across all genres, from indie gems to blockbuster hits." 
+    },
+    { 
+      icon: <FaStar />, 
+      title: "Top Rated Picks", 
+      desc: "Curated collections of trending and critically acclaimed films just for you." 
+    },
+    { 
+      icon: <FaCloudDownloadAlt />, 
+      title: "Watchlists", 
+      desc: "Save your favorites and organize your personal watchlists with a single click." 
+    },
+    { 
+      icon: <FaUserFriends />, 
+      title: "Community", 
+      desc: "Join thousands of movie lovers to share reviews and ratings worldwide." 
+    },
+  ];
 
   return (
-    <section className=" bg-secondary text-secondary mt-20 md:mt-28">
-      <div className="max-w-6xl mx-auto px-6 text-center">
-        <motion.h2 
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="text-4xl font-bold mb-6 text-gray-900"
-        >
-          About <span className="text-highlight">MovieMaster Pro</span>
-        </motion.h2>
+    <section className="py-28 transition-colors duration-300 overflow-hidden">
+      <div className="max-w-7xl mx-auto px-6">
+        
+        {/* Main Header Area */}
+        <div className="flex flex-col md:flex-row items-center gap-12 mb-20">
+          <div className="md:w-1/2 text-left">
+            <motion.h2 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-4xl md:text-5xl font-black text-base-content leading-tight mb-6"
+            >
+              Your Ultimate <br /> 
+              <span className="text-primary italic">Cinematic</span> Journey
+            </motion.h2>
+          </div>
 
-        <motion.p 
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ delay: 0.2, duration: 0.6 }}
-          className="max-w-3xl mx-auto mb-12 text-lg text-gray-600"
-        >
-          MovieMaster Pro is a cutting-edge movie platform that helps you discover,
-          explore, and manage your favorite movies with ease. From the latest blockbusters
-          to timeless classics — everything you love, all in one place.
-        </motion.p>
+          <div className="md:w-1/2">
+            <motion.p 
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.3 }}
+              className="text-lg text-base-content/70 leading-relaxed italic"
+            >
+              MovieMaster Pro is more than just a database. It’s a cutting-edge platform 
+              designed for true cinephiles. Discover, explore, and manage your favorite 
+              content with a seamless interface that puts the magic of cinema in your hands.
+            </motion.p>
+          </div>
+        </div>
 
-        <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-8">
-          {
-          about.map((feature, index) => (
+        {/* Features Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {features.map((feature, index) => (
             <motion.div
               key={index}
-              whileHover={{ scale: 1.05 }}
-              transition={{ type: "spring", stiffness: 150 }}
-              className="p-6 bg-secondary rounded-2xl shadow-md hover:shadow-lg"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.1 }}
+              whileHover={{ y: -10 }}
+              className="group p-8 rounded-[var(--radius-box)] bg-base-200 border border-base-300 hover:border-primary/40 hover:shadow-2xl transition-all duration-300"
             >
-              <div className="text-4xl text-highlight mb-3 flex justify-center">
+              <div className="w-14 h-14 rounded-2xl bg-primary flex items-center justify-center text-white text-2xl mb-6 shadow-lg shadow-primary/20 group-hover:scale-110 transition-transform duration-300">
                 {feature.icon}
               </div>
-              <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
-              <p className="text-gray-600">{feature.desc}</p>
+              
+              <h3 className="text-xl font-bold text-base-content mb-3 group-hover:text-primary transition-colors duration-300">
+                {feature.title}
+              </h3>
+              
+              <p className="text-base-content/60 leading-relaxed text-sm">
+                {feature.desc}
+              </p>
             </motion.div>
           ))}
         </div>

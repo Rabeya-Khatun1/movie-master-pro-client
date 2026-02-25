@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { FcSearch } from "react-icons/fc";
 import { motion } from "framer-motion";
+import { HiOutlineSearchCircle } from "react-icons/hi";
+import { toast } from 'react-toastify';
+import useAxios from '../../Hooks/useAxios';
 
+// Icons Import
 import action from '../../assets/icons8-action-50.png';
 import drama from '../../assets/icons8-drama-48.png';
 import comedy from '../../assets/icons8-comedy-48.png';
@@ -11,9 +14,6 @@ import Romance from '../../assets/icons8-romance-48.png';
 import Horror from '../../assets/icons8-horror-48.png';
 import Fantasy from '../../assets/icons8-fantasy-48.png';
 import Documentary from '../../assets/icons8-document-64.png';
-import { toast } from 'react-toastify';
-import useAxios from '../../Hooks/useAxios';
-
 
 const staticGenres = [
   { name: "Action", icon: action },
@@ -27,79 +27,109 @@ const staticGenres = [
   { name: "Documentary", icon: Documentary },
 ];
 
-
-
 const GenreSection = () => {
+  const axios = useAxios();
+  const [movieCounts, setMovieCounts] = useState({});
+  const [loading, setLoading] = useState(true);
 
-const axios = useAxios()
-const [movieCounts, setMovieCounts] = useState({})
-
-useEffect( ()=>
-{
-  const counts = {}
-  staticGenres.forEach((genre)=>{
-    axios.get(`/movies/filter?genre=${genre.name}`)
-    .then(res => {
-      counts[genre.name]= res.data.length
-      setMovieCounts({...counts})
-    })
-    .catch( (error)=>{
-      console.log(error)
-      counts[genre.name] = 0;
-      setMovieCounts({...counts})
-    })
-  })
-},[axios])
+  useEffect(() => {
+    const fetchCounts = async () => {
+      const counts = {};
+      try {
+        // সব রিকোয়েস্ট একসাথে করার জন্য Promise.all ব্যবহার করা হয়েছে (Better Performance)
+        await Promise.all(
+          staticGenres.map(async (genre) => {
+            try {
+              const res = await axios.get(`/movies/filter?genre=${genre.name}`);
+              counts[genre.name] = res.data.length;
+            } catch (err) {
+              counts[genre.name] = 0;
+            }
+          })
+        );
+        setMovieCounts(counts);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchCounts();
+  }, [axios]);
 
   const handleGenreClick = (genreName) => {
-   const count = movieCounts[genreName] 
-
-    toast(`You clicked ${genreName}. Total movies: ${count}`);
-  };
-
-
-  const containerVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: (i) => ({
-      opacity: 1,
-      y: 0,
-      transition: { delay: i * 0.1, duration: 0.4, type: "spring" },
-    }),
+    const count = movieCounts[genreName] || 0;
+    toast.info(`Exploring ${genreName}: Found ${count} movies`, {
+      position: "bottom-right",
+      autoClose: 2000,
+    });
   };
 
   return (
-    <div className=" text-white rounded-2xl mx-12 mt-20 md:mt-28 ">
-      <h2 className="text-xl font-extrabold mb-12 text-gray-600 flex justify-center items-center gap-4">
-        <FcSearch /> Browse <span className='text-highlight'>Movies</span> By Genre
-      </h2>
+    <section className="py-16 md:py-20 px-6 transition-colors duration-300">
+      <div className="max-w-7xl mx-auto">
+        
+        {/* Header Section */}
+        <div className="text-center mb-16">          
+          <h2 className="text-3xl md:text-5xl font-black text-base-content tracking-tight">
+            Browse <span className="text-primary italic">Movies</span> By Genre
+          </h2>
+          <p className="mt-4 text-base-content/60 font-medium italic">
+            "Find your next favorite story in seconds"
+          </p>
+        </div>
 
-      <div className="flex flex-wrap justify-center gap-6 max-w-6xl mx-auto px-4">
-        {staticGenres.map((genre, index) => (
-          <motion.button
-            key={genre.name}
-            custom={index}
-            initial="hidden"
-            animate="visible"
-            variants={containerVariants}
-            whileHover={{ scale: 1.15, rotate: 3 }}
-            whileTap={{ scale: 0.95 }}
-            onClick={() => handleGenreClick(genre.name)}
-            className="flex items-center justify-center gap-4
-                       p-3 px-5 rounded-2xl bg-primary text-lg font-semibold 
-                       hover:bg-teal-600 transition duration-300 ease-in-out
-                       shadow-lg"
-          >
-            <img src={genre.icon} alt={genre.name} className="w-10 h-10 mb-2" />
-            <span>{genre.name}</span>
-            <small className="text-gray-400">{movieCounts[genre.name] || 0} movies</small>
-          </motion.button>
-        ))}
+        {/* Genre Grid */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6">
+          {staticGenres.map((genre, index) => (
+            <motion.button
+              key={genre.name}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.05 }}
+              whileHover={{ y: -8, transition: { duration: 0.2 } }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => handleGenreClick(genre.name)}
+              className="relative group overflow-hidden p-6 rounded-[var(--radius-box)] bg-base-200 border border-base-300 hover:border-primary/50 transition-all duration-300 flex flex-col items-center text-center shadow-sm hover:shadow-xl"
+            >
+              {/* Decorative Background Glow */}
+              <div className="absolute -right-4 -top-4 w-16 h-16 bg-primary/5 rounded-full group-hover:bg-primary/20 transition-all duration-500" />
+              
+              <div className="relative z-10">
+                <div className="w-16 h-16 mb-4 mx-auto p-2 bg-base-100 rounded-2xl shadow-inner group-hover:rotate-6 transition-transform duration-300">
+                  <img 
+                    src={genre.icon} 
+                    alt={genre.name} 
+                    className={`w-full h-full object-contain ${loading ? 'animate-pulse' : ''}`} 
+                  />
+                </div>
+                
+                <h3 className="text-lg font-bold text-base-content mb-1 group-hover:text-primary transition-colors">
+                  {genre.name}
+                </h3>
+                
+                <span className="text-xs font-bold text-base-content/40 uppercase tracking-tighter">
+                  {movieCounts[genre.name] ?? '...'} Titles
+                </span>
+              </div>
+
+              {/* Hover Bottom Line */}
+              <div className="absolute bottom-0 left-0 h-1 bg-primary w-0 group-hover:w-full transition-all duration-300" />
+            </motion.button>
+          ))}
+        </div>
+
+        {/* Footer Note */}
+        <motion.div 
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          className="text-center mt-16"
+        >
+          <div className="inline-block px-6 py-2 rounded-full border border-base-300 bg-base-200 text-sm text-base-content/50">
+            Select a category to start your cinematic journey
+          </div>
+        </motion.div>
       </div>
-
-      <p className="text-center mt-12 text-gray-400">
-        Click on any genre to explore movies.
-      </p>
-    </div>
+    </section>
   );
 };
 

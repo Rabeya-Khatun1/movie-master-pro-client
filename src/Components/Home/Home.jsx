@@ -26,9 +26,10 @@ const fadeInUp = {
 
 const Home = () => {
   return (
-    <div className="bg-secondary">
+    <div className="">
 <title>MOVIEMASTERpro | Home</title>
-      <motion.div id="banner" initial="hidden" animate="visible" variants={fadeInUp}>
+<div className=''>
+        <motion.div id="banner" initial="hidden" animate="visible" variants={fadeInUp}>
         <Banner />
       </motion.div>
 
@@ -52,9 +53,9 @@ const Home = () => {
         <GenreSection />
       </motion.div>
 
-      <motion.div id="about" initial="hidden" whileInView="visible" variants={fadeInUp} viewport={{ once: true }}>
+      {/* <motion.div id="about" initial="hidden" whileInView="visible" variants={fadeInUp} viewport={{ once: true }}>
         <AboutPlatform />
-      </motion.div>
+      </motion.div> */}
 
       <motion.div id="services" initial="hidden" whileInView="visible" variants={fadeInUp} viewport={{ once: true }}>
         <Services />
@@ -67,13 +68,11 @@ const Home = () => {
       <motion.div id="testimonial" initial="hidden" whileInView="visible" variants={fadeInUp} viewport={{ once: true }}>
         <Testimonials></Testimonials>
       </motion.div>
-      <motion.div id="news-letter" initial="hidden" whileInView="visible" variants={fadeInUp} viewport={{ once: true }}>
-        <Newsletter></Newsletter>
-      </motion.div>
       <motion.div id="contact" initial="hidden" whileInView="visible" variants={fadeInUp} viewport={{ once: true }}>
         <Contact />
       </motion.div>
 
+</div>
 
     </div>
   );
